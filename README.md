@@ -37,7 +37,7 @@ To set up the bot on your server, follow these steps:
 1. **Clone the GitHub Repository:** Start by cloning the bot's GitHub repository to your server:
 
    ```shell
-   git clone https://github.com/your-repo.git
+   git clone https://github.com/NYOGamesCOM/TwitchBot.git
    ```
 
 2. **Install Required Modules:** Navigate to the project directory and install the necessary Node.js modules:
