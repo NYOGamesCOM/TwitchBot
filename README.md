@@ -91,8 +91,7 @@ To configure the Discord OAuth2 Redirect URL, follow these steps:
 
 1. **Create a Discord Developer Application:** In the Discord Developer Portal, create an application to manage your bot.
 
-2. **Set up OAuth2 in the Developer Portal:** In the Developer Portal, go to your application and navigate to the "OAuth2" section. Here, you can add a redirect URL. For local development, you can use `http://localhost:3000/auth/callback`.
-3. 
+2. **Set up OAuth2 in the Developer Portal:** In the Developer Portal, go to your application and navigate to the "OAuth2" section. Here, you can add a redirect URL. For local development, you can use `http://localhost:3000/auth/callback`. 
 
 ## Usage
 
@@ -129,9 +128,7 @@ If you wish to contribute to this project, follow these steps:
 
 2. **Clone Your Fork:** Clone the forked repository to your local development environment.
 
-3. **Create a
-
- New Branch:** Create a new branch for your changes.
+3. **Create a New Branch:** Create a new branch for your changes.
 
 4. **Make Changes:** Make your code changes, enhancements, or bug fixes.
 
