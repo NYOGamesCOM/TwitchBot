@@ -156,6 +156,8 @@ The Twitch Bot LIVE Notification System provides various commands for managing a
 - Configuration of a specific notification channel.
 - Logging of bot activities in a separate log channel.
 - Support for multiple servers and easy invite link generation.
+![serverlist](https://github.com/NYOGamesCOM/TwitchBot/assets/3257915/49dba329-6431-4754-98ac-4171d3dce8bd)
+
 
 ## Authentication
 
