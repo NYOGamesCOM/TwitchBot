@@ -1,0 +1,59 @@
+{
+  "servers": {
+    "342836262060949524": {
+      "streamers": [],
+      "name": "Ban Kai",
+      "logChannelId": "1003653024876609556",
+      "prefix": "!",
+      "twitchChannel": "Not Set"
+    },
+    "356052883730464768": {
+      "streamers": [
+        {
+          "id": 1,
+          "name": "xQc"
+        },
+        {
+          "id": 2,
+          "name": "dasMEHDI"
+        },
+        {
+          "id": 3,
+          "name": "13Thomas"
+        },
+        {
+          "id": 4,
+          "name": "BanKai"
+        }
+      ],
+      "name": "Marksoft's lounge",
+      "logChannelId": "1003653024876609556",
+      "prefix": "!",
+      "twitchChannel": "1003637445880979567"
+    },
+    "1163949908332646411": {
+      "streamers": [
+        {
+          "id": 1,
+          "name": "xQc"
+        }
+      ],
+      "name": "TOP G",
+      "logChannelId": "1169183575296446484",
+      "prefix": "!",
+      "twitchChannel": "1163949909989408820"
+    },
+    "909925576154959882": {
+      "streamers": [
+        {
+          "id": 1,
+          "name": "BanKai"
+        }
+      ],
+      "name": "Pikachu22's server",
+      "logChannelId": "1003653024876609556",
+      "prefix": "!",
+      "twitchChannel": "1169216197330468944"
+    }
+  }
+}
