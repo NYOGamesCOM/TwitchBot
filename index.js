@@ -8,8 +8,6 @@ const botToken = process.env.DISCORD_BOT_TOKEN;
 const twitchClientId = process.env.TWITCH_CLIENT_ID;
 const twitchTokenId = process.env.TWITCH_TOKEN_ID;
 const serverId = '356052883730464768';// for logs
-const passport = require('passport');
-const DiscordStrategy = require('passport-discord').Strategy;
 const express = require('express');
 const app = express();
 const guilds = new Map();
@@ -17,12 +15,7 @@ const intents = new Intents([Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
 const client = new Client({ intents: intents });
 const checkInterval = 10 * 60 * 1000;
 const channelType = 'text';
-const session = require('express-session');
 
-// Configure Express
-app.use(session({ secret: process.env.DISCORD_SECRET_ID, resave: false, saveUninitialized: false }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.get('/', (req, res) => {
   const filePath = 'streamers.json';
@@ -36,51 +29,6 @@ app.get('/', (req, res) => {
   }
 });
 
-// Configure the Discord strategy
-passport.use(new DiscordStrategy({
-  clientID: process.env.DISCORD_CLIENT_ID,
-  clientSecret: process.env.DISCORD_SECRET_ID,
-  callbackURL: 'http://localhost:3000/auth/callback', // Use your own callback URL
-  scope: ['identify'],
-},
-  (accessToken, refreshToken, profile, done) => {
-    // Here you can save user data or perform any other necessary actions.
-    return done(null, profile);
-  }));
-
-// Serialize and deserialize user sessions
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-
-// Implement your login route
-app.get('/auth/login', passport.authenticate('discord'));
-
-// Implement your callback route
-app.get('/auth/callback',
-  passport.authenticate('discord', { failureRedirect: '/' }),
-  (req, res) => {
-    res.redirect('/'); // Redirect to your homepage after successful login
-  });
-
-// Protect a route
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/auth/login');
-}
-
-app.get('/profile', ensureAuthenticated, (req, res) => {
-  res.send(`Hello, ${req.user.username}!`);
-});
-
-
-//==================================
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.use(express.static('public'));
@@ -139,12 +87,12 @@ client.on('messageCreate', (message) => {
           console.log(`Log channel not found or undefined.`);
         }
 
-        const generalLogChannelId = '1003653024876609556'; // Adjust as needed
+        const generalLogChannelId = '1003653024876609556';
         const generalLogChannel = client.channels.cache.get(generalLogChannelId);
         if (generalLogChannelId) {
           if (generalLogChannel) {
             const logEmbed = new MessageEmbed()
-              .setColor('#FF0000') // Set your desired color
+              .setColor('#FF0000')
               .setThumbnail(message.guild.iconURL({ dynamic: true }))
               .setTitle('Activity Logger')
               .addFields(
@@ -334,7 +282,7 @@ function handleCommands(message, serverId) {
     } else if (command === 'checkstreamer') {
       if (args.length !== 1) {
         message.reply('Please provide the streamer name.');
-      } else {// Assuming the streamer name is provided as the argument
+      } else {
         const streamerName = args[0].toLowerCase();
         const serverData = loadServerDataFromJSON(filePath);
         const server = serverData.servers[serverId];
@@ -385,7 +333,7 @@ function handleHelpCommand(message) {
 
 
 async function handleServerListCommand(message) {
-  const separator = '--------------------------'; // You can customize this separator text or emoji
+  const separator = '--------------------------';
   const guildsList = client.guilds.cache.map(async (guild) => {
     const serverData = loadServerDataFromJSON(filePath);
     const serverInfo = serverData.servers[guild.id];
@@ -404,15 +352,12 @@ async function handleServerListCommand(message) {
 
     const streamers = serverInfo ? serverInfo.streamers.map((streamer) => `- ${streamer.name} `).join('\n') : 'No streamers';
 
-    // Find a specific text channel in the guild to create an invite link
     const textChannel = guild.channels.cache.find((channel) => channel.type === 'GUILD_TEXT');
 
     if (!textChannel) {
-      // Handle the case when there's no text channel
       return 'No text channel found';
     }
 
-    // Create an invite link for the text channel
     const invite = await textChannel.createInvite({ unique: true });
 
     const infoString = `** Server Name:** ${guild.name} \n ** Invite link:** ${invite.url} \n ** Prefix:** ${prefix} \n ** Twitch Channel:** ${twitchChannel} \n ** Log Channel ID:** ${logChannelId} \n ** Server ID:** ${guild.id} \n ** Streamers:** ${streamersCount} `;
@@ -441,14 +386,14 @@ async function handleServerListCommand(message) {
 }
 
 function handleSetChannelCommand(message, args, serverId, serverData) {
-  const channelId = args[0]; // Extract the channel ID from the message
+  const channelId = args[0];
   const channel = client.channels.cache.get(channelId);
 
   if (channel) {
     const config = serverData.servers[serverId];
     config.twitchChannel = channelId;
 
-    saveServerDataToJSON(serverData); // Update the server data with the new channel
+    saveServerDataToJSON(serverData);
     message.reply(`Twitch live notifications will now be sent to < #${channelId}>.`);
   } else {
     message.reply('Channel not found.');
@@ -456,14 +401,14 @@ function handleSetChannelCommand(message, args, serverId, serverData) {
 }
 
 function handleLogChannelCommand(message, args, serverId, serverData) {
-  const channelId = args[0]; // Extract the channel ID from the message
+  const channelId = args[0];
   const channel = client.channels.cache.get(channelId);
 
   if (channel) {
     const config = serverData.servers[serverId];
     config.logChannelId = channelId;
 
-    saveServerDataToJSON(serverData); // Update the server data with the new channel
+    saveServerDataToJSON(serverData);
     message.reply(`Log channel has been sent to < #${channelId}>.`);
   } else {
     message.reply('Channel not found.');
@@ -516,7 +461,6 @@ function handleAddCommand(message, args) {
 
   message.reply(`LIVE notification added for ${streamerName}(ID: ${nextID})(GID: ${serverId})`);
 }
-
 
 function handleRemoveCommand(message, args, serverId) {
   if (!message.member.permissions.has('ADMINISTRATOR') || hasRole(message.member, 'Twitch')) {
@@ -587,17 +531,17 @@ async function sendDiscordNotification(streamer, channelId, streamData) {
   }
 
   const embed = new MessageEmbed()
-    .setColor('#0088FF') // Update the color to match your desired style
-    .setThumbnail(message.guild.iconURL({ dynamic: true }))
-    .setTitle('Live Stream Alert') // Change the title to your preferred title
+    .setColor('#0088FF')
+    .setThumbnail(channel.guild.iconURL({ dynamic: true }))
+    .setTitle('Live Stream Alert')
     .setDescription(`** Streamer:** ${streamer} \n` +
       `** Title:** ${streamData.title} \n` +
       `** Viewers:** ${streamData.viewer_count} \n` +
       `** Started at:** ${new Date(streamData.started_at).toUTCString()} `)
     .addFields(
-      {
-        name: 'Twitch notification bot',
-        value: '[Support](https://discord.gg/pNGm9DHcuG)',
+      {//.addFields('Watch Now', `[Watch Stream](https://www.twitch.tv/${streamer})`)
+        name: 'Watch Now',
+        value: '[Watch Stream](https://www.twitch.tv/${streamer})',
       }
     )
     .setTimestamp();
@@ -617,11 +561,11 @@ async function checkStreamerStatus(serverId, streamer, textChannel) {
       const data = response.data;
       if (data.data.length > 0) {
         const streamData = data.data[0];
-        sendDiscordNotification(streamer.name, textChannel, streamData);
+        sendDiscordNotification(serverId, streamer.name, textChannel, streamData); // Pass serverId to the notification function if needed
       }
     }
   } catch (error) {
-    console.error(` ${textChannel} Error checking stream for ${streamer.name}: ${error.message}`);
+    console.error(`Error checking stream for ${streamer.name} on server ${serverId}: ${error.message}`);
   }
 }
 
@@ -645,7 +589,6 @@ function monitorStreamers() {
 }
 
 function getPrefix(serverId) {
-  // Read the JSON data from the file
   const filePath = 'streamers.json';
   const fs = require('fs');
 
@@ -657,11 +600,11 @@ function getPrefix(serverId) {
       const prefix = serverData.servers[serverId].prefix;
       return prefix;
     } else {
-      return '!'; // Default prefix if not found
+      return '!';
     }
   } catch (error) {
     console.error('Error reading JSON file:', error);
-    return '!'; // Default prefix if an error occurs
+    return '!';
   }
 }
 
