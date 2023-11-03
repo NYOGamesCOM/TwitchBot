@@ -2,6 +2,7 @@
 
 This is a Discord bot that provides real-time notifications for when a Twitch streamer goes live on your server. It allows server administrators to manage a list of streamers to track and notify users when their favorite streamers start broadcasting.
 
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -15,9 +16,11 @@ This is a Discord bot that provides real-time notifications for when a Twitch st
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
+
 ## Overview
 
 The Twitch Bot is built using Discord.js, Axios, and Express. It enables your Discord server to track and notify users when specific Twitch streamers start their broadcasts. The system includes commands for managing the list of streamers to monitor, setting notification channels, and changing the command prefix.
+
 
 ## Prerequisites
 
@@ -30,6 +33,7 @@ Before you start using the Twitch Discord Bot, ensure that you have the followin
 
 Certainly, here's an updated version of the Installation section for your Twitch Bot LIVE Notification System documentation:
 
+
 ## Installation
 
 To set up the bot on your server, follow these steps:
@@ -37,7 +41,7 @@ To set up the bot on your server, follow these steps:
 1. **Clone the GitHub Repository:** Start by cloning the bot's GitHub repository to your server:
 
    ```shell
-   git clone https://github.com/NYOGamesCOM/TwitchBot.git
+   git clone https://github.com/NYOGamesCOM/TwitchLIVEBot.git
    ```
 
 2. **Install Required Modules:** Navigate to the project directory and install the necessary Node.js modules:
@@ -97,7 +101,9 @@ To set up the bot on your server, follow these steps:
    npm start
    ```
 
+
 ## Configuration
+
 
 ### Environment Variables
 
@@ -120,22 +126,6 @@ The bot relies on several environment variables for its configuration:
 - **CHANNEL_TYPE:** This defines the type of Discord channel that the bot should use for notifications. The default is 'text'.
 
 
-### Discord OAuth2 Redirect URL
-
-To configure the Discord OAuth2 Redirect URL, follow these steps:
-
-1. **Create a Discord Developer Application:** In the Discord Developer Portal, create an application to manage your bot.
-
-2. **Set up OAuth2 in the Developer Portal:** In the Developer Portal, go to your application and navigate to the "OAuth2" section. Here, you can add a redirect URL. For local development, you can use `http://localhost:3000/auth/callback`. However, for production or live deployment, you should use a publicly accessible URL where your application is hosted.
-
-   - If you have a domain for your application, use `https://yourdomain.com/auth/callback`.
-   - Make sure to set up the corresponding route in your application code to handle authentication callbacks.
-   - Ensure that the redirect URL is secure and properly configured to receive OAuth2 responses from Discord.
-
-Remember that the redirect URL plays a crucial role in the authentication process, so it must be accurate and secure.
-
-## Function and Command Documentation
-
 ### Constants and Dependencies
 
 - `prefix`: A string representing the command prefix for your bot.
@@ -152,14 +142,17 @@ Remember that the redirect URL plays a crucial role in the authentication proces
 - `checkInterval`: An integer representing the interval (in milliseconds) for monitoring streamers.
 - `channelType`: A string representing the type of Discord channels you want to monitor (e.g., 'text').
 
+
 ### Web Server
 
 - `app.get('/')`: A route handler for the root URL that reads server data from a JSON file and renders it using an EJS template.
+
 
 ### Client Events
 
 - `client.once('ready')`: An event handler that runs when the bot is ready. It initializes the server data and schedules streamer monitoring at specified intervals.
 - `client.on('messageCreate')`: An event handler that runs when a new message is created. It processes bot commands and logs server activity.
+
 
 ### Utility Functions
 
@@ -168,6 +161,7 @@ Remember that the redirect URL plays a crucial role in the authentication proces
 - `initializeServerData(guilds)`: Initializes server data for all Discord servers that the bot is a member of.
 - `saveServerDataToJSON(data)`: Saves server data to a JSON file.
 - `loadServerDataFromJSON(filename)`: Loads server data from a JSON file.
+
 
 ### Command Handling
 
@@ -184,6 +178,7 @@ Remember that the redirect URL plays a crucial role in the authentication proces
 - `handleListCommand(message, serverId)`: Lists all streamers in the notification list.
 - `handleGetInviteLinkCommand(message, serverId)`: Generates an invite link to the server.
 
+
 ### Notification and Monitoring
 
 - `sendDiscordNotification(streamer, channelId, streamData)`: Sends a Discord notification when a streamer goes live.
@@ -193,7 +188,21 @@ Remember that the redirect URL plays a crucial role in the authentication proces
 - `getStreamersCountForServer(serverId, jsonData)`: Retrieves the count of streamers for a server.
 - `handleGetInviteLinkCommand(message, serverId)`: Generates an invite link to the server.
 
-These functions and commands enable your Discord bot to manage and monitor streamers and interact with Discord servers effectively. Make sure to integrate them correctly into your application and provide the required environmental variables.
+
+### Discord OAuth2 Redirect URL
+
+To configure the Discord OAuth2 Redirect URL, follow these steps:
+
+1. **Create a Discord Developer Application:** In the Discord Developer Portal, create an application to manage your bot.
+
+2. **Set up OAuth2 in the Developer Portal:** In the Developer Portal, go to your application and navigate to the "OAuth2" section. Here, you can add a redirect URL. For local development, you can use `http://localhost:3000/auth/callback`. However, for production or live deployment, you should use a publicly accessible URL where your application is hosted.
+
+   - If you have a domain for your application, use `https://yourdomain.com/auth/callback`.
+   - Make sure to set up the corresponding route in your application code to handle authentication callbacks.
+   - Ensure that the redirect URL is secure and properly configured to receive OAuth2 responses from Discord.
+
+Remember that the redirect URL plays a crucial role in the authentication process, so it must be accurate and secure.
+
 
 ## Usage
 
@@ -217,7 +226,6 @@ The Twitch Bot LIVE Notification System provides various commands for managing a
 - Configuration of a specific notification channel.
 - Logging of bot activities in a separate log channel.
 - Support for multiple servers and easy invite link generation.
-
 
 
 ## Authentication
