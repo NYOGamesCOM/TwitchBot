@@ -55,14 +55,21 @@ To set up the bot on your server, follow these steps:
 
 3. **Set Environment Variables:** You'll need to configure environment variables for the bot to function properly. Create a `.env` file in the project's root directory and set the following variables:
 
-   - `DISCORD_BOT_TOKEN`: Your Discord bot token.
-   - `TWITCH_CLIENT_ID`: Your Twitch Client ID.
-   - `TWITCH_TOKEN_ID`: Your Twitch Token ID.
-   - `DISCORD_SECRET_ID`: Discord OAuth2 Secret ID for session management.
-   - `DISCORD_CLIENT_ID`: Discord Client ID.
-   - `LOG_CHANNEL_ID`: The default log channel ID for your bot.
-   - `CHECK_INTERVAL`: The interval (in milliseconds) at which the bot checks the streamer status.
-   - `CHANNEL_TYPE`: The type of Discord channel you want to use for notifications (e.g., 'text').
+- `DISCORD_BOT_TOKEN:` This is your Discord bot token, which is essential for the bot to authenticate with your server.
+
+- `TWITCH_CLIENT_ID:` The Twitch Client ID is required for making requests to the Twitch API.
+
+- `TWITCH_TOKEN_ID:` The Twitch Token ID allows the bot to authenticate with the Twitch API.
+
+- `DISCORD_SECRET_ID:` Discord OAuth2 Secret ID is used for session management during user authentication.
+
+- `DISCORD_CLIENT_ID:` This is your Discord Client ID, used in authentication and other interactions.
+
+- `LOG_CHANNEL_ID:` The default log channel ID for your bot to log events and activities.
+
+- `CHECK_INTERVAL:` This sets the interval (in milliseconds) at which the bot checks the status of the streamers. You can adjust this interval based on your preferences.
+
+- `CHANNEL_TYPE:` This defines the type of Discord channel that the bot should use for notifications. The default is 'text'.
 
    Replace `your_discord_bot_token`, `your_twitch_client_id`, `your_twitch_token_id`, `your_discord_oauth2_secret_id`, `your_discord_client_id`, `your_log_channel_id`, `your_check_interval`, and `your_channel_type` with your actual values.
 
@@ -88,28 +95,7 @@ To set up the bot on your server, follow these steps:
    The bot will now be up and running, ready to provide Twitch live notifications on your server.
 
 
-## Configuration
-
-
-### Environment Variables
-
-The bot relies on several environment variables for its configuration:
-
-- **DISCORD_BOT_TOKEN:** This is your Discord bot token, which is essential for the bot to authenticate with your server.
-
-- **TWITCH_CLIENT_ID:** The Twitch Client ID is required for making requests to the Twitch API.
-
-- **TWITCH_TOKEN_ID:** The Twitch Token ID allows the bot to authenticate with the Twitch API.
-
-- **DISCORD_SECRET_ID:** Discord OAuth2 Secret ID is used for session management during user authentication.
-
-- **DISCORD_CLIENT_ID:** This is your Discord Client ID, used in authentication and other interactions.
-
-- **LOG_CHANNEL_ID:** The default log channel ID for your bot to log events and activities.
-
-- **CHECK_INTERVAL:** This sets the interval (in milliseconds) at which the bot checks the status of the streamers. You can adjust this interval based on your preferences.
-
-- **CHANNEL_TYPE:** This defines the type of Discord channel that the bot should use for notifications. The default is 'text'.
+## Development
 
 
 ### Constants and Dependencies
