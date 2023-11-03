@@ -50,7 +50,7 @@ To set up the bot on your server, follow these steps:
 2. **Install Required Modules:** Navigate to the project directory and install the necessary Node.js modules:
 
    ```shell
-   npm install discord.js axios fs 
+   npm install 
    ```
 - This command will read the package.json file, identify the listed dependencies, and download and install them in a node_modules directory in your project's folder.
 
