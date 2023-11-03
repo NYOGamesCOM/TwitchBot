@@ -3,7 +3,10 @@
 <head>
   <title>Marksoft's Twitch Bot LIVE notification list</title>
    <meta name="description" content="The Twitch Bot is a Discord bot that provides real-time notifications for when a Twitch streamer goes live on your server. It allows server administrators to manage a list of streamers to track and notify users when their favorite streamers start broadcasting.">
+  <base href="/login">
   <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     /* Add your CSS styles for the navbar and menu bar here */
     .navbar {
@@ -52,11 +55,18 @@
 <body>
   <!-- Navbar -->
   <div class="navbar">
-    <a href="#">Marksoft</a>
+      <a href="#">Marksoft</a>
   </div>
-
+  <div class="bg-discord-gray text-white" >
+      <a id="login" href="https://discord.com/api/oauth2/authorize?client_id=1003423081123033108&redirect_uri=http%3A%2F%2Ftwitchlive.13thomasbot.repl.co%2Fauth%2Fcallback&response_type=code&scope=identify%20guilds" class="bg-discord-blue  text-xl px-5 py-3 rounded-md font-bold space-x-4 hover:bg-gray-600 transition duration-75">
+          <i class="fa-brands fa-discord text-2xl"></i>
+          <span>Login with Discord</span>
+      </a>
+  </div>
   <h1>Twitch Bot LIVE Notification</h1>
-  <h3>The Twitch Bot is built using Discord.js, Axios, and Express. It enables your Discord server to track and notify users when specific Twitch streamers start their broadcasts. The system includes commands for managing the list of streamers to monitor, setting notification channels, and changing the command prefix.</h3>
+  <div class="bot-info">
+    <h3>The Twitch Bot is built using Discord.js, Axios, and Express. It enables your Discord server to track and notify users when specific Twitch streamers start their broadcasts. The system includes commands for managing the list of streamers to monitor, setting notification channels, and changing the command prefix.</h3>
+  </div>
   <% for (const serverId in serverData.servers) { %>
     <div class="server-info" >
       <h2><%= serverData.servers[serverId].name %></h2>
