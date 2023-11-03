@@ -4,7 +4,7 @@ This is a Discord bot that provides real-time notifications for when a Twitch st
 
 # Invite the bot to your server - 
 
- [INVITE](https://discord.com/api/oauth2/authorize?client_id=1003423081123033108&redirect_uri=https%3A%2F%2Ftwitchlive.13thomasbot.repl.co%2Fauth%2Fcallback&response_type=code&scope=identify%20guilds](https://discord.com/api/oauth2/authorize?client_id=1003423081123033108&permissions=8&scope=bot%20applications.commands))
+ [INVITE](https://discord.com/api/oauth2/authorize?client_id=1003423081123033108&permissions=8&scope=bot%20applications.commands)
 
 ## Table of Contents
 
