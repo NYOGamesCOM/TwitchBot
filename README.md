@@ -2,6 +2,9 @@
 
 This is a Discord bot that provides real-time notifications for when a Twitch streamer goes live on your server. It allows server administrators to manage a list of streamers to track and notify users when their favorite streamers start broadcasting.
 
+# Invite the bot to your server - 
+
+ [INVITE](https://discord.com/api/oauth2/authorize?client_id=1003423081123033108&redirect_uri=https%3A%2F%2Ftwitchlive.13thomasbot.repl.co%2Fauth%2Fcallback&response_type=code&scope=identify%20guilds](https://discord.com/api/oauth2/authorize?client_id=1003423081123033108&permissions=8&scope=bot%20applications.commands))
 
 ## Table of Contents
 
@@ -41,7 +44,7 @@ To set up the bot on your server, follow these steps:
 1. **Clone the GitHub Repository:** Start by cloning the bot's GitHub repository to your server:
 
    ```shell
-   git clone https://github.com/NYOGamesCOM/TwitchLIVEBot.git
+   git clone https://github.com/NYOGamesCOM/TwitchBotLIVE.git
    ```
 
 2. **Install Required Modules:** Navigate to the project directory and install the necessary Node.js modules:
@@ -52,40 +55,6 @@ To set up the bot on your server, follow these steps:
 
 3. **Set Environment Variables:** You'll need to configure environment variables for the bot to function properly. Create a `.env` file in the project's root directory and set the following variables:
 
-   - `DISCORD_BOT_TOKEN=your_discord_bot_token`
-   - `TWITCH_CLIENT_ID=your_twitch_client_id`
-   - `TWITCH_TOKEN_ID=your_twitch_token_id`
-   - `DISCORD_SECRET_ID=your_discord_oauth2_secret_id`
-   - `DISCORD_CLIENT_ID=your_discord_client_id`
-   - `LOG_CHANNEL_ID=your_log_channel_id`
-   - `CHECK_INTERVAL=your_check_interval`
-   - `CHANNEL_TYPE=your_channel_type`
-
-   Replace `your_discord_bot_token`, `your_twitch_client_id`, `your_twitch_token_id`, `your_discord_oauth2_secret_id`, `your_discord_client_id`, `your_log_channel_id`, `your_check_interval`, and `your_channel_type` with your actual values.
-
-   Here's an example of how your `.env` file might look:
-
-   ```shell
-   DISCORD_BOT_TOKEN=your_discord_bot_token
-   TWITCH_CLIENT_ID=your_twitch_client_id
-   TWITCH_TOKEN_ID=your_twitch_token_id
-   DISCORD_SECRET_ID=your_discord_oauth2_secret_id
-   DISCORD_CLIENT_ID=your_discord_client_id
-   LOG_CHANNEL_ID=your_log_channel_id
-   CHECK_INTERVAL=60000
-   CHANNEL_TYPE=text
-   ```
-
-4. **Start the Application:** Launch the bot by running the following command:
-
-   ```shell
-   npm start
-   ```
-
-   The bot will now be up and running, ready to provide Twitch live notifications on your server.
-
-3. **Set Environment Variables:** You'll need to configure environment variables for the bot to function properly. Set the following variables:
-
    - `DISCORD_BOT_TOKEN`: Your Discord bot token.
    - `TWITCH_CLIENT_ID`: Your Twitch Client ID.
    - `TWITCH_TOKEN_ID`: Your Twitch Token ID.
@@ -95,11 +64,28 @@ To set up the bot on your server, follow these steps:
    - `CHECK_INTERVAL`: The interval (in milliseconds) at which the bot checks the streamer status.
    - `CHANNEL_TYPE`: The type of Discord channel you want to use for notifications (e.g., 'text').
 
+   Replace `your_discord_bot_token`, `your_twitch_client_id`, `your_twitch_token_id`, `your_discord_oauth2_secret_id`, `your_discord_client_id`, `your_log_channel_id`, `your_check_interval`, and `your_channel_type` with your actual values.
+
+   Here's an example of how your `.env` file might look:
+
+   ```shell
+   - `DISCORD_BOT_TOKEN=your_discord_bot_token`
+   - `TWITCH_CLIENT_ID=your_twitch_client_id`
+   - `TWITCH_TOKEN_ID=your_twitch_token_id`
+   - `DISCORD_SECRET_ID=your_discord_oauth2_secret_id`
+   - `DISCORD_CLIENT_ID=your_discord_client_id`
+   - `LOG_CHANNEL_ID=your_log_channel_id`
+   - `CHECK_INTERVAL=your_check_interval`
+   - `CHANNEL_TYPE=your_channel_type`
+   ```
+
 4. **Start the Application:** Launch the bot by running the following command:
 
    ```shell
    npm start
    ```
+
+   The bot will now be up and running, ready to provide Twitch live notifications on your server.
 
 
 ## Configuration
