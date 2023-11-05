@@ -32,7 +32,7 @@ Before you start contributing, make sure you have the following prerequisites:
 2. Clone the forked repository to your local machine:
 
    ```bash
-   git clone https://github.com/NYOGamesCOM/TwitchBott.git
+   git clone https://github.com/NYOGamesCOM/TwitchBot.git
    ```
 
 3. Install the project dependencies:
